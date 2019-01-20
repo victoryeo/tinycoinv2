@@ -1,6 +1,6 @@
 const express       = require('express')
-const bc            = require('./tinycoin.chain');
-const init          = require('./init');
+const bc            = require('./tinycoin.chain')
+const init          = require('./init')
 
 const router = express.Router();
 
@@ -19,8 +19,8 @@ function updateWallet(address, amount) {
 
 function newMining(from_address, to_address, amount) {
   // Get the last proof of work
-  let last_block = init.blockchain[init.blockchain.length - 1];
-  let last_proof = last_block.data.pow;
+  let last_block = init.blockchain[init.blockchain.length - 1]
+  let last_proof = last_block.data.pow
 
   // Find the proof of work for
   // the current block being mined
@@ -41,32 +41,32 @@ function newMining(from_address, to_address, amount) {
       pow: proof,
       transactions: init.this_nodes_transactions
   };
-  let new_block_index = init.blockchain.indexOf(last_block) + 1;
+  let new_block_index = init.blockchain.indexOf(last_block) + 1
   // Empty transaction list
-  init.this_nodes_transactions = [];
+  init.this_nodes_transactions = []
   // Now create the new block!
-  const mined_block = bc.createNextBlock(last_block, new_block_data);
-  init.blockchain.push(mined_block);
+  const mined_block = bc.createNextBlock(last_block, new_block_data)
+  init.blockchain.push(mined_block)
 }
 
 function doTx(req) {
   return new Promise((resolve, reject) => {
-    console.log(req.body);
-    let new_txion = req.body;
+    console.log(req.body)
+    let new_txion = req.body
     //we add the transaction to our list
-    init.this_nodes_transactions.push(new_txion);
+    init.this_nodes_transactions.push(new_txion)
     // Because the transaction was successfully
     // submitted, we log it to our console
-    console.log("New transaction");
-    console.log("FROM: " + new_txion['from']);
-    console.log("TO: " + new_txion['to']);
-    console.log("AMOUNT: " + new_txion['amount']);
+    console.log("New transaction")
+    console.log("FROM: " + new_txion['from'])
+    console.log("TO: " + new_txion['to'])
+    console.log("AMOUNT: " + new_txion['amount'])
 
     //add the new block
-    newMining(new_txion['from'], new_txion['to'], new_txion['amount']);
+    newMining(new_txion['from'], new_txion['to'], new_txion['amount'])
 
     // Then we let the client know it worked out
-    resolve(JSON.stringify(new_txion));
+    resolve(JSON.stringify(new_txion))
     //res.send("Transaction submission successful");
   })
 }
@@ -80,6 +80,6 @@ async function transfer(req, res) {
 
 router.post('/', (req, res) => {
   blocks = transfer(req, res)
-});
+})
 
-module.exports = router;
+module.exports = router
