@@ -21,25 +21,28 @@ let walletSchema = new schema({
 let walletModel = mongoose.model('walletModel', walletSchema)
 //console.log(walletModel)
 
-let walletInst = new walletModel({ address: '010203', amount: 1})
-walletInst.save((err) => {
-  if (err)
-    console.log('mongo save error1');
-})
+module.exports = walletModel
 
-walletModel.find({address: '010203'}, function(err, data) {
-  if (err)
-    console.log('find error')
-  // else
-  //   console.log(data)
-})
-walletModel.findOneAndUpdate({"address": '010203'}, {$inc:{"amount":2}}, {},
- (err, data) => {
-  if (err)
-    console.log('find error')
-  else
-    console.log(data)
-})
+//the code below shows how to use mongoose
+// let walletInst = new walletModel({ address: '010203', amount: 1})
+// walletInst.save((err) => {
+//   if (err)
+//     console.log('mongo save error1');
+// })
+//
+// walletModel.find({address: '010203'}, function(err, data) {
+//   if (err)
+//     console.log('find error')
+//   else
+//    console.log(data)
+// })
+// walletModel.findOneAndUpdate({"address": '010203'}, {$inc:{"amount":2}}, {},
+//  (err, data) => {
+//   if (err)
+//     console.log('find error')
+//   else
+//     console.log(data)
+// })
 
 //the code below creates a new data row
 // walletInst.amount=3
