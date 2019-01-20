@@ -78,7 +78,7 @@ const proofOfWork = (lastProof) => {
   // and the proof of work of the previous
   // block in the chain
   while  (!((incrementor % 9 == 0) && (incrementor % lastProof == 0))) {
-    console.log(incrementor, lastProof);
+    //console.log(incrementor, lastProof);
     incrementor += 1;
   }
   return incrementor;

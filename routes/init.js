@@ -1,7 +1,7 @@
 
 let Init = module.exports = {
   // A completely random address of the owner of this node
-  miner_address: "q3nf394hjg-random-miner-address-34nf3i4nflkn3oi",
+  miner_address: "0101010101",
 
   // Store the transactions that
   // this node has in a list
@@ -14,5 +14,6 @@ let Init = module.exports = {
   peer_nodes: [],
   // store the blockchain
   blockchain: [],
-
+  // store the wallet balances
+  wallet: []
 }

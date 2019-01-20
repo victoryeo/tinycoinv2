@@ -4,6 +4,19 @@ const init          = require('./init');
 
 const router = express.Router();
 
+function updateWallet(address, amount) {
+  console.log('wallet entry', init.wallet.length)
+  console.log('address', address)
+  for (var i = 0; i < init.wallet.length; i++) {
+    if (init.wallet[i].address === address) {
+      init.wallet[i].amount += amount
+      console.log('amount', init.wallet[i].amount)
+      return
+    }
+  }
+  init.wallet.push({"address": address, "amount": amount})
+}
+
 function doMining(req) {
   return new Promise((resolve, reject) => {
     console.log(req.body);
@@ -26,6 +39,9 @@ function doMining(req) {
     init.this_nodes_transactions.push(
         { "from": "network", "to": init.miner_address, "amount": 1 }
     )
+    // store into wallet
+    updateWallet(init.miner_address, 1)
+
     // Now we can gather the data needed
     // to create the new block
     new_block_data = {
