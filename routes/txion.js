@@ -1,8 +1,37 @@
 const express       = require('express')
 const bc            = require('./tinycoin.chain')
 const init          = require('./init')
+const col           = require('../mongoose')
 
 const router = express.Router();
+
+function updateWalletDB(address, amount) {
+  console.log('address', address)
+  col.find({address: address}, function(err, data) {
+    if (err) {
+      console.log('mongo find error1')
+    }
+    else {
+      if (data.length == 0) {
+        console.log('null data')
+        let walletInst = new col({ address: address, amount: amount})
+        walletInst.save((err) => {
+          if (err)
+            console.log('mongo save error1');
+        })
+      }
+      else {
+        col.findOneAndUpdate({"address": address}, {$inc:{"amount":amount}}, {},
+         (err, data) => {
+          if (err)
+            console.log('find error1')
+          else
+            console.log(data)
+        })
+      }
+    }
+  })
+}
 
 function updateWallet(address, amount) {
   console.log('wallet entry', init.wallet.length)
@@ -34,7 +63,8 @@ function newMining(from_address, to_address, amount) {
   // )
 
   // store into wallet
-  updateWallet(to_address, parseInt(amount,10))
+  //updateWallet(to_address, parseInt(amount,10))
+  updateWalletDB(to_address, parseInt(amount,10))
 
   // the new block data needed is gathered
   new_block_data = {
