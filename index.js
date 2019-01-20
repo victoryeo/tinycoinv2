@@ -6,10 +6,10 @@ const bodyParser    = require('body-parser')
 const helmet        = require('helmet')
 const cors          = require('cors')
 const index         = require('./routes/index')
-const bc            = require('./routes/tinycoin.chain');
+const bc            = require('./routes/tinycoin.chain')
 const init          = require('./routes/init')
 
-const app = express();
+const app = express()
 
 if (config.env === 'development') {
   app.use(logger('dev'))
@@ -31,5 +31,8 @@ app.use('/', index)
 app.set('port', config.port)
 // listen on port config.port
 app.listen(config.port, () => {
-  console.info(`server started on port ${config.port} (${config.env})`) // eslint-disable-line no-console
-});
+  console.info(`server started on port ${config.port} (${config.env})`)
+  // eslint-disable-line no-console
+})
+
+module.exports = app
