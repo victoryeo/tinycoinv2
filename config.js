@@ -8,7 +8,7 @@ const config = {
   mongooseDebug: process.env.MONGOOSE_DEBUG,
   jwtSecret: process.env.JWT_SECRET,
   mongo: {
-    host: process.env.MONGO_HOST || 'mongodb://localhost/snake-coin',
+    host: process.env.MONGO_HOST || 'mongodb://localhost/tiny-coin',
     port: process.env.MONGO_PORT,
   },
 }
