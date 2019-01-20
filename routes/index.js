@@ -7,7 +7,7 @@ const balance       = require('./balance')
 const router = express.Router()
 
 router.get('/', (req, res) => {
-  res.json({ api: 'v0.0.1' });
+  res.json({ api: 'v0.0.1' })
 })
 
 router.use('/blocks', blocks)
