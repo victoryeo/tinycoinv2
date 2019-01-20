@@ -1,8 +1,8 @@
 const express       = require('express')
-const bc            = require('./tinycoin.chain');
-const init          = require('./init');
+const bc            = require('./tinycoin.chain')
+const init          = require('./init')
 
-const router = express.Router();
+const router = express.Router()
 
 function getWallet(address) {
   console.log('wallet entry', init.wallet.length)
@@ -17,10 +17,10 @@ function getWallet(address) {
 
 function doListing(address) {
   return new Promise((resolve, reject) => {
-    let balance = getWallet(address);
+    let balance = getWallet(address)
     // Convert our blocks into dictionaries
     // so we can send them as json objects later
-    resolve(JSON.stringify(balance));
+    resolve(JSON.stringify(balance))
   })
 }
 
@@ -37,4 +37,4 @@ router.get('/:address', (req, res) => {
   //res.status('get blocks').send(JSON.stringify(blocks))
 });
 
-module.exports = router;
+module.exports = router
