@@ -1,6 +1,6 @@
 const express       = require('express')
-const bc            = require('./tinycoin.chain');
-const init          = require('./init');
+const bc            = require('./tinycoin.chain')
+const init          = require('./init')
 
 const router = express.Router();
 
@@ -19,10 +19,10 @@ function updateWallet(address, amount) {
 
 function doMining(req) {
   return new Promise((resolve, reject) => {
-    console.log(req.body);
+    console.log(req.body)
     // Get the last proof of work
-    let last_block = init.blockchain[init.blockchain.length - 1];
-    let last_proof = last_block.data.pow;
+    let last_block = init.blockchain[init.blockchain.length - 1]
+    let last_proof = last_block.data.pow
     //error checking
     //if (last_proof == undefined)
     //  last_proof = 1
@@ -48,13 +48,13 @@ function doMining(req) {
         pow: proof,
         transactions: init.this_nodes_transactions
     };
-    let new_block_index = init.blockchain.indexOf(last_block) + 1;
+    let new_block_index = init.blockchain.indexOf(last_block) + 1
     // Empty transaction list
-    init.this_nodes_transactions = [];
+    init.this_nodes_transactions = []
     // Now create the new block!
-    const mined_block = bc.createNextBlock(last_block, new_block_data);
-    init.blockchain.push(mined_block);
-    resolve(JSON.stringify(mined_block));
+    const mined_block = bc.createNextBlock(last_block, new_block_data)
+    init.blockchain.push(mined_block)
+    resolve(JSON.stringify(mined_block))
   })
 }
 
@@ -62,11 +62,11 @@ async function mine(req, res) {
   console.log('query', req.query)
   const blocks = await doMining(req)
 
-  return res.json(blocks);
+  return res.json(blocks)
 }
 
 router.get('/', (req, res) => {
   blocks = mine(req, res)
-});
+})
 
-module.exports = router;
+module.exports = router
