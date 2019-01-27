@@ -33,18 +33,18 @@ function updateWalletDB(address, amount) {
   })
 }
 
-function updateWallet(address, amount) {
-  console.log('wallet entry', init.wallet.length)
-  console.log('address', address)
-  for (var i = 0; i < init.wallet.length; i++) {
-    if (init.wallet[i].address === address) {
-      init.wallet[i].amount += amount
-      console.log('amount', init.wallet[i].amount)
-      return
-    }
-  }
-  init.wallet.push({"address": address, "amount": amount})
-}
+// function updateWallet(address, amount) {
+//   console.log('wallet entry', init.wallet.length)
+//   console.log('address', address)
+//   for (var i = 0; i < init.wallet.length; i++) {
+//     if (init.wallet[i].address === address) {
+//       init.wallet[i].amount += amount
+//       console.log('amount', init.wallet[i].amount)
+//       return
+//     }
+//   }
+//   init.wallet.push({"address": address, "amount": amount})
+// }
 
 function doMining(req) {
   return new Promise((resolve, reject) => {

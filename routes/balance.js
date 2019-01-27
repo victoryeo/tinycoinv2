@@ -21,20 +21,20 @@ function getWalletDB(address) {
   })
 }
 
-function getWallet(address) {
-  console.log('wallet entry', init.wallet.length)
-  console.log('address', address)
-  for (var i = 0; i < init.wallet.length; i++) {
-    if (init.wallet[i].address === address) {
-      console.log('amount', init.wallet[i].amount)
-      return init.wallet[i].amount
-    }
-  }
-}
+// function getWallet(address) {
+//   console.log('wallet entry', init.wallet.length)
+//   console.log('address', address)
+//   for (var i = 0; i < init.wallet.length; i++) {
+//     if (init.wallet[i].address === address) {
+//       console.log('amount', init.wallet[i].amount)
+//       return init.wallet[i].amount
+//     }
+//   }
+// }
 
 async function doBalance(req, res) {
     let address = req.params.address
-    //let balance = getWallet(address)    
+    //let balance = getWallet(address)
     let balance = await getWalletDB(address)
     console.log('balance',balance)
     // Convert our balance into dictionaries
