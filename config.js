@@ -9,7 +9,7 @@ const config = {
   jwtSecret: process.env.JWT_SECRET,
   mongo: {
     host: process.env.MONGO_HOST || 'mongodb://localhost/tiny-coin',
-    port: process.env.MONGO_PORT,
+    port: process.env.MONGO_PORT || 27017,
   },
 }
 
