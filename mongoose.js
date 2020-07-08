@@ -4,7 +4,8 @@ const config        = require('./config')
 //mongoose.Promise = Promise
 
 const mongoUri = config.mongo.host
-mongoose.connect(mongoUri, { keepAlive: 10 })
+console.log(mongoUri)
+mongoose.connect(mongoUri, { keepAlive: 10, useNewUrlParser: true })
 
 let db = mongoose.connection
 db.on('error', () => {
